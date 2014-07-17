@@ -91,8 +91,8 @@ int main(){
     }
 
 
-    for(i = 0 ;i <= n*2; i++ )
-    printf("%d %d min:%d max:%d\n",tree[i].L,tree[i].R,tree[i].minL,tree[i].maxR);
+    //for(i = 0 ;i <= n*2; i++ )
+    //printf("%d %d min:%d max:%d\n",tree[i].L,tree[i].R,tree[i].minL,tree[i].maxR);
 }
 
 //AC!

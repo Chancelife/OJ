@@ -3,12 +3,15 @@
 using namespace std;
 
 int Total[30005];
+int Sum[30005];
 
 void Init(int n)
-//初始化 可选
 {
     for(int i = 0 ;i < n ;i++)
+    {
         Total[i] = i;
+        Sum[i] = 1;
+    }
 }
 
 int GetRoot(int a)
@@ -23,26 +26,15 @@ int GetRoot(int a)
 
 void Union(int a,int b)
 {
-    int num1,num2;//防止warning，变量重设
-    num1 = GetRoot(a);
-    num2 = GetRoot(b);
-    if(num1 != num2)
-        Total[b] = Total[a];
-    printf("union %d & %d\n",a,b);
-}
+    int num1 = GetRoot(a);
+    int num2 = GetRoot(b);
 
-int Connected(int a,int b)//if connected
-{
-    if(Total[a] == Total[b])
-        {
-        printf("True\n");
-        return 1;
-        }
-    else
-        {
-        printf("False\n");
-        return 0;
-        }
+    if(num1 == num2)
+        return;
+
+    Sum[num1] += Sum[num2];
+    Total[num2] = num1;
+    //printf("union %d & %d\n",a,b);
 }
 
 int main()
@@ -50,28 +42,24 @@ int main()
     int n,group;
     int stus,stu_fir,stu_oth;
     int i,j;
-    int Count = 0;
-    scanf("%d %d",&n,&group);
-    Init(n);
-    //初始化
-    for(i = 0; i < group; i++)
-        {
-        scanf("%d %d",&stus,&stu_fir);
-        //stu_fir用于和组内第一个同学Union
-            for(j = 1; j < stus; j++)
+    while(true) {
+        scanf("%d %d",&n,&group);
+        if(n == 0 && group == 0)
+            break;
+        Init(n);
+        //初始化
+        for(i = 0; i < group; i++)
             {
-                scanf("%d",&stu_oth);
-                Union(stu_fir,stu_oth);
+                scanf("%d %d",&stus,&stu_fir);
+                //stu_fir用于和组内第一个同学Union
+                for(j = 1; j < stus; ++j)
+                {
+                    scanf("%d",&stu_oth);
+                    Union(stu_fir,stu_oth);
+                }
             }
-        }
-    for(i = 0; i < n; i++)
-        {
-            if(Total[i] == 0)
-                Count++;
-        }
-        printf("%d",Count);
-        //没写Count[]
-        //导致其实是+N的
+    printf("%d\n",Sum[GetRoot(0)]);
+    }
 }
 
 
