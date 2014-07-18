@@ -20,7 +20,7 @@ void Union(int a,int b)
     if(Roota == Rootb)
         return;
     Cube[b] = Roota;
-    Under[a] =
+    Under[a] = sum[pa];
 }
 
 

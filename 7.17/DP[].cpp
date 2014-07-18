@@ -37,7 +37,7 @@ int main()
     for(i = line-1; i >= 0; i--)
         {
         SumLine(i);
-        printf("%d %d %d\n",Temp[0],Temp[1],Temp[2]);
+        //printf("%d %d %d\n",Temp[0],Temp[1],Temp[2]);
         }
     printf("%d",Temp[0]);
 }
